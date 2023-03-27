@@ -499,6 +499,7 @@ else // IF THERE'S THE INTERNET CONNECTION THE BUTTON IS GIVEN A TAG OF DEACTIVA
 
   function DocumentGet()
   {
+    
     db.collection("Items").where("type", "==", "message").orderBy("timestamp").startAfter(latestDocument || 0).limit(maxDataFetch)
     .onSnapshot((querySnapshot) => {
       document.getElementById("content").innerHTML = "";
@@ -618,11 +619,13 @@ else // IF THERE'S THE INTERNET CONNECTION THE BUTTON IS GIVEN A TAG OF DEACTIVA
          if(document.getElementById("content").childElementCount > 0)
          {
            document.getElementById("loader_ripple").style.display = "none";
-           
+          document.getElementById("background_animation").style.display = "block";
          }
          else
          {
            document.getElementById("loader_ripple").style.display = "block";
+           document.getElementById("background_animation").style.display = "none";
+          
            DocumentGet();
            setTimeout(() => {
             contentHolderDOM.childElementCount > 0 ? null : location.reload();
@@ -894,6 +897,29 @@ function filter_on_search()
      }
 }
 
+
+function randomValues() {
+  anime({
+    targets: '.square, .circle, .triangle',
+    translateX: function() {
+      return anime.random(-500, 500);
+    },
+		translateY: function() {
+      return anime.random(-300, 300);
+    },
+		rotate: function() {
+			return anime.random(0, 360);
+		},
+		scale: function() {
+			return anime.random(.2, 2);
+		},
+    duration: 1000,
+		easing: 'easeInOutQuad',
+    complete: randomValues,
+	});
+}
+randomValues();
+
 // DRAFT SYSTEM [CLOSED]
 //SEND ON ENTER KEY [CLOSED]
 // HIGHLIGHT THE ICON WHEN SELF POST GETTING VIEWED  [CLOSED]
@@ -913,3 +939,4 @@ function filter_on_search()
 //FEEDBACK FROM SERVER DURING MESSAGE SEND / EDIT / LOAD [PROGRESS] [CLOSED]
 
 // L131211247IHE
+
