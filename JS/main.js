@@ -8,7 +8,6 @@ const currentDate =   dd + '-'+ mm + '-' + yyyy;
 const time = date.getHours() + ":" + date.getMinutes();
 const maxMessageLength = 8000;
 const minMessageLength = 5;
-var user_ip = "";
 const textarea = document.getElementById("message");
 var user_ip_enc = null;
 var latestDocument = null;
