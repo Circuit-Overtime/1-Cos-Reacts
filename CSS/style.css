@@ -26,27 +26,8 @@ body
     top: 20px;
     cursor: pointer;
     pointer-events:  none;
-    animation: pulse 2s linear infinite;
     transition: 0.25s;
 }
-
-
-
-
-  @keyframes pulse {
-    0% {
-      box-shadow: 0 0 0 10px rgba(94, 255, 0, 0.781);
-      transform: scale(1);
-    }
-    70% {
-        box-shadow: 0 0 0 40px rgba(40, 187, 3, 0.788);
-        transform: scale(2.5);
-    }
-    100% {
-        box-shadow: 0 0 0 10px rgba(54, 233, 0, 0.671);
-        transform: scale(1);
-    }
-  }
 
 
 
@@ -81,7 +62,7 @@ body
     position: absolute;
     top: 0px; /*0px*/
     width: 93%;
-    background-color: #24242431; /*#222*/
+    background: #24242431; /*#222*/
     outline: none;
     border: none;
     backdrop-filter: blur(5px);
@@ -438,20 +419,6 @@ textarea::-webkit-scrollbar
 }
 
 
-/* #expand_content.active
-{
-    position: absolute;
-    top: 40px;
-    z-index: 150;
-    cursor: pointer;
-    left: 90%;
-    font-size: 20px;
-    color: #ff002b;
-    transform: rotate(0);
-    transition: 0.25s;
-    animation: wobble 1s linear infinite;
-    animation-play-state: running;
-} */
 
 .expand_message
 {
@@ -588,7 +555,8 @@ textarea::-webkit-scrollbar
     left: 5%;
     width: 1215px;
     margin-top: 12px;
-    background-color: #3f3f3f;
+    background-color: #3f3f3fa1;
+    backdrop-filter: blur(25px);
     border-radius: 5px;
     padding-left: 10px;
     padding-top: 5px;
@@ -816,3 +784,51 @@ textarea::-webkit-scrollbar
     }
   }
   
+
+  /* ====================================================ANIMATED BACKGROUND=========================================================================== */
+
+  .background_animation
+  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #111;
+    z-index: 0;
+    display: none;
+    transition: 1s;
+  }
+  .square {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(#303030, #757575);
+    z-index: 1;
+  }
+  
+  .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: #1cd99d;
+    border-radius: 50%;
+  }
+  
+  .triangle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: #f5f5f5;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
