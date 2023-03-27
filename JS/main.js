@@ -518,7 +518,7 @@ else // IF THERE'S THE INTERNET CONNECTION THE BUTTON IS GIVEN A TAG OF DEACTIVA
               </div>`
               
              }  
-             else
+             else if(message_id != localStorage.getItem("uid"))
              {
               content_zone = `<div class="content_holding" id="${doc.data().message_id}" name="${doc.data().message_id_enc}">
               <ion-icon name="caret-down" class="expand_content" id="expand_content" onclick = "content_expand(this)" data-id="${doc.data().message_id_enc}"></ion-icon>
@@ -526,7 +526,6 @@ else // IF THERE'S THE INTERNET CONNECTION THE BUTTON IS GIVEN A TAG OF DEACTIVA
               <div class="heading"><p class="heading_notes" id="heading_${doc.data().message_id_enc}" data-value="${doc.data().message_id_enc}" name = "p_heading">${doc.data().message_id_enc}</p> <ion-icon name="copy" onclick = "copy_tag(this)" class="copy_tag" id="heading_ico${doc.data().message_id_enc}" data-id="${doc.data().message_id_enc}"></ion-icon> </div>
               <div class="content_info" id="${doc.data().message_id_enc}"><p class="content_notes" id="content_notes${doc.data().message_id_enc}">${doc.data().message}</p></div>
               </div>`
-    
              }
              document.getElementById("content").innerHTML += content_zone; 
              setTimeout(() => {
