@@ -12,7 +12,7 @@ const textarea = document.getElementById("message");
 var user_ip_enc = null;
 var latestDocument = null;
 const contentHolderDOM = document.getElementById("content");
-const maxDataFetch = 4;
+const maxDataFetch = 60;
 const extraScroll = 0; //of no use as of now
 document.getElementById("sword_count").innerHTML += " "+maxMessageLength; //SETS THE MAX-MESSAGE-LENGTH TEXT TO DOM
 
