@@ -545,12 +545,8 @@ else // IF THERE'S THE INTERNET CONNECTION THE BUTTON IS GIVEN A TAG OF DEACTIVA
     const ref = db.collection("Items").where("type", "==", "message").orderBy("timestamp").startAfter(latestDocument || 0).limit(maxDataFetch);
     const data = await ref.get();
     latestDocument = data.docs[data.docs.length - 1];
-    if(data.empty)
+    if(!data.empty)
     {
-      latestDocument = null;
-      console.log("empty")
-
-    }
     db.collection("Items").where("type", "==", "message").orderBy("timestamp").startAfter(latestDocument || 0).limit(maxDataFetch)
     .onSnapshot((querySnapshot) => {
       // document.getElementById("content").innerHTML = "";
@@ -588,6 +584,7 @@ else // IF THERE'S THE INTERNET CONNECTION THE BUTTON IS GIVEN A TAG OF DEACTIVA
         // console.log(contentHolderDOM.lastChild); 
 
     });
+  }
   }
  
   contentHolderDOM.addEventListener("scroll", (e) => {
