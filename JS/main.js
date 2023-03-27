@@ -528,6 +528,7 @@ else // IF THERE'S THE INTERNET CONNECTION THE BUTTON IS GIVEN A TAG OF DEACTIVA
               </div>`
              }
              document.getElementById("content").innerHTML += content_zone; 
+ 
              setTimeout(() => {
               document.getElementById("message_send_loader").style.display = "none";
              }, 800);
@@ -547,6 +548,7 @@ else // IF THERE'S THE INTERNET CONNECTION THE BUTTON IS GIVEN A TAG OF DEACTIVA
     if(data.empty)
     {
       latestDocument = null;
+      console.log("empty")
 
     }
     db.collection("Items").where("type", "==", "message").orderBy("timestamp").startAfter(latestDocument || 0).limit(maxDataFetch)
@@ -576,14 +578,6 @@ else // IF THERE'S THE INTERNET CONNECTION THE BUTTON IS GIVEN A TAG OF DEACTIVA
               <div class="heading"><p class="heading_notes" id="heading_${doc.data().message_id_enc}" data-value="${doc.data().message_id_enc}">${doc.data().message_id_enc}</p> <ion-icon name="copy" onclick = "copy_tag(this)" class="copy_tag" id="heading_ico${doc.data().message_id_enc}" data-id="${doc.data().message_id_enc}"></ion-icon> </div>
               <div class="content_info" id="${doc.data().message_id_enc}"><p class="content_notes" id="content_notes${doc.data().message_id_enc}">${doc.data().message}</p></div>
               </div>`
-              
-              document.getElementById(message_id).style.transform = "scale(0)";
-              setTimeout(() => {
-                document.getElementById(message_id).style.transform = "scale(1.5)";
-              }, 200);
-              setTimeout(() => {
-                document.getElementById(message_id).style.transform = "scale(1)";
-              }, 300);
              }
              document.getElementById("content").innerHTML += content_zone; 
              setTimeout(() => {
