@@ -920,6 +920,23 @@ function randomValues() {
 }
 randomValues();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // DRAFT SYSTEM [CLOSED]
 //SEND ON ENTER KEY [CLOSED]
 // HIGHLIGHT THE ICON WHEN SELF POST GETTING VIEWED  [CLOSED]
