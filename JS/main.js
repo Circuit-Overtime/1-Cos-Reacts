@@ -300,6 +300,10 @@ if(localStorage.getItem("uid") == undefined)
           
           
         }
+
+
+// ==========================================MOB VIEW================================================================================
+      window.onscroll = function() {};        
       is_message_focused = (document.getElementById("message") === document.activeElement)
       is_search_focused = (document.getElementById("search") === document.activeElement);
       if(is_message_focused === true) 
