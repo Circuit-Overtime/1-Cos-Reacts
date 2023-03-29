@@ -1,5 +1,10 @@
-@media only screen and (max-width: 600px) {
-	.content /*the whole thing having contents*/
+@media only screen and (max-width: 768px) {
+
+body 
+{
+    overflow: hidden;
+}
+    .content /*the whole thing having contents*/
 {
     padding: 0;
     margin: 0;
@@ -563,7 +568,7 @@
 }
 .declare
 {
-    position: fixed;
+    position: absolute;
     top: 5%; /*5*/
     z-index: 10;
     left: 4%;
