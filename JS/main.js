@@ -16,6 +16,9 @@ const maxDataFetch = 60;
 const extraScroll = 0; //of no use as of now
 document.getElementById("sword_count").innerHTML += " "+maxMessageLength; //SETS THE MAX-MESSAGE-LENGTH TEXT TO DOM
 
+
+const nvbr = document.getElementById("navbar");
+const declre = document.getElementById("declare");
 var firebaseConfig = {
     apiKey: "AIzaSyAoDG4yzNRMtwc9YDg-V2OEHy3yFRihkbc",
     authDomain: "secrets-1c931.firebaseapp.com",
@@ -28,6 +31,7 @@ var firebaseConfig = {
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+textarea.focus();
 
 
 
@@ -55,6 +59,35 @@ else
   textarea.focus();
   ["change","input","paste","keydown","keyup"].forEach(function(evt){
     textarea.addEventListener(evt, function(e) {
+
+        if((window.matchMedia("(max-width: 600px)").matches))
+        {
+          if(document.getElementById("expand_message").classList.contains("active") == false)
+    {
+      textarea.style.top = "-102px";
+    }
+
+    //IF THE PLACEHOLDER EXPAND COMMAND IS GIVEN, AUTO RESIZE IS STOPPED AND HEIGHT IS CHANGED AUTOMATICALLY TO MAX
+    else if (document.getElementById("expand_message").classList.contains("active") == true) 
+    {
+      
+      // document.getElementById("message").classList.toggle("active");
+      document.getElementById("message").style.height = "600px";
+      document.getElementById("message").style.maxHeight = "600px";
+      document.getElementById("message").style.top = "-550px";
+    }
+    //IF THE PLACEHOLDER EXPAND COMMAND IS GIVEN, HEIGHT IS CHANGED AUTOMATICALLY TO MAX
+    else
+    {
+      document.getElementById("expand_message").classList.toggle("active");
+      document.getElementById("message").style.height = "600px";
+      document.getElementById("message").style.maxHeight = "600px";
+      document.getElementById("message").style.top = "-550px";
+    }
+}
+
+
+
       localStorage.setItem("draft_message", textarea.value.trim()); //SETS VALUE TO DRAFT FROM PLACEHOLDER...
 
       //..SHOWS THAT AUTOSAVE IS ACTIVE
@@ -267,7 +300,78 @@ if(localStorage.getItem("uid") == undefined)
           
           
         }
+      is_message_focused = (document.getElementById("message") === document.activeElement)
+      is_search_focused = (document.getElementById("search") === document.activeElement);
+      if(is_message_focused === true) 
+      {
+        if((window.matchMedia("(max-width: 600px)").matches))
+        {
+          nvbr.style.height = "75px";
+          declre.style.top = "8%";
+          contentHolderDOM.style.height = "300px";
+          document.getElementById("textbox").style.top = "83%";
+          document.getElementById("cancel_edit").style.top = "-370px";
+          document.getElementById("message_send_loader").style.top = "-375px";
+          if(document.getElementById("cancel_edit").classList.contains("active") == false) 
+          {
+          document.getElementById("cancel_edit").style.top = "-685px";
+          }
+  }
+}
+      if(is_message_focused === false) 
+      {
+          if(window.matchMedia("(max-width: 600px)").matches == true)
+        {
+        nvbr.style.height = "58px"
+        declre.style.top = "5%";
+        contentHolderDOM.style.height = "510px";
+        document.getElementById("textbox").style.top = "88%";
+        document.getElementById("cancel_edit").style.top = "-585px";
+        document.getElementById("message_send_loader").style.top = "-405px";
+        if(document.getElementById("cancel_edit").classList.contains("active") == false) 
+        {
+          document.getElementById("cancel_edit").style.top = "-685px";
+        }
+       } 
+      }
 
+
+      if(is_search_focused === true) 
+      {
+        if((window.matchMedia("(max-width: 600px)").matches))
+        {
+          nvbr.style.height = "75px";
+          declre.style.top = "8%";
+          contentHolderDOM.style.height = "300px";
+          document.getElementById("textbox").style.top = "83%";
+          document.getElementById("cancel_edit").style.top = "-370px";
+          document.getElementById("message_send_loader").style.top = "-375px";
+          if(document.getElementById("cancel_edit").classList.contains("active") == false) 
+          {
+          document.getElementById("cancel_edit").style.top = "-685px";
+          }
+  }
+}
+      if((is_search_focused === false) && (is_message_focused === false))
+      {
+          if(window.matchMedia("(max-width: 600px)").matches == true)
+        {
+        nvbr.style.height = "58px"
+        declre.style.top = "5%";
+        contentHolderDOM.style.height = "510px";
+        document.getElementById("textbox").style.top = "88%";
+        document.getElementById("cancel_edit").style.top = "-585px";
+        document.getElementById("message_send_loader").style.top = "-405px";
+        if(document.getElementById("cancel_edit").classList.contains("active") == false) 
+        {
+          document.getElementById("cancel_edit").style.top = "-685px";
+        }
+       } 
+      }
+
+
+      
+      
       },100)
 
    
@@ -344,9 +448,9 @@ if(document.getElementById("send").classList.contains("deactivated") == false) /
         document.getElementById("message").style.top = "0px";
         localStorage.setItem("draft_message", "");
         setTimeout(() => {
-          document.getElementById("message_send_loader").style.display = "none";
+          document.getElementById("message_send_loader").style.display = "none"; 
           contentHolderDOM.scrollTo({ left: 0, top: contentHolderDOM.scrollHeight + extraScroll, behavior: "smooth" });
-         }, 800);
+         }, 1000);
 
         
       }
@@ -447,9 +551,9 @@ document.getElementById("message").addEventListener("keydown", (e) => {
         document.getElementById("message").style.top = "0px";
         localStorage.setItem("draft_message", "");
         setTimeout(() => {
-          document.getElementById("message_send_loader").style.display = "none";
+          document.getElementById("message_send_loader").style.display = "none"; //none
           contentHolderDOM.scrollTo({ left: 0, top: contentHolderDOM.scrollHeight + extraScroll, behavior: "smooth" });
-         }, 800);
+         }, 1000);
       }
     }
     else //edit
@@ -530,8 +634,8 @@ else // IF THERE'S THE INTERNET CONNECTION THE BUTTON IS GIVEN A TAG OF DEACTIVA
              document.getElementById("content").innerHTML += content_zone; 
  
              setTimeout(() => {
-              document.getElementById("message_send_loader").style.display = "none";
-             }, 800);
+              document.getElementById("message_send_loader").style.display = "none"; //none
+             }, 1000);
         });
         // console.log(contentHolderDOM.lastChild); 
         // ref = db.collection("Items").where("type", "==", "message").get();
@@ -577,8 +681,8 @@ else // IF THERE'S THE INTERNET CONNECTION THE BUTTON IS GIVEN A TAG OF DEACTIVA
              }
              document.getElementById("content").innerHTML += content_zone; 
              setTimeout(() => {
-              document.getElementById("message_send_loader").style.display = "none";
-             }, 800);
+              document.getElementById("message_send_loader").style.display = "none"; //none
+             }, 1000);
             
         });
         // console.log(contentHolderDOM.lastChild); 
@@ -665,8 +769,8 @@ function edit_content(self)
     document.getElementById("message").value =  self.getAttribute("data-value");
     let edit_message_detect = setInterval(() => {
       document.getElementById("message").value != doc.data().message ? document.getElementById("message_send_loader").style.display = "block" : (setTimeout(() => {
-        document.getElementById("message_send_loader").style.display = "none";
-       }, 800) , (clearInterval(edit_message_detect)))
+        document.getElementById("message_send_loader").style.display = "none"; //none
+       }, 1000) , (clearInterval(edit_message_detect)))
     }, 2);
 
   
@@ -710,6 +814,7 @@ function copy_tag(self)
 
 document.getElementById("search_items_ico").addEventListener("click", () => {
   document.getElementById("search").classList.toggle("active");
+  document.getElementById("search").focus();
 })
 
 // CHECKS IF THE SEARCHING ALGORITHM IS BEING TRIGGERED AND FEEDBACK METHOD (HIGHLIGHTING)
@@ -939,3 +1044,5 @@ randomValues();
 
 // L131211247IHE
 
+
+// PROBLEM IN CREATING RESPONSIVE PAGE -- SEARCH FOR [PROBLEM HERE]
