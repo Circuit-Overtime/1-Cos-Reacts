@@ -1,8 +1,10 @@
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 600px) {
 
-body 
+body,html
 {
+    height: 100%;
     overflow: hidden;
+    max-height: 100vh;
 }
     .content /*the whole thing having contents*/
 {
@@ -10,7 +12,7 @@ body
     margin: 0;
     position: absolute;
     top: 75px;
-    height: 510px; /*510px*/
+    height: 500px; /*510px*/
     width: 420px;
     border-radius: 15px;
     background-color: transparent;
@@ -20,14 +22,17 @@ body
 
 }
 
-
+.background_animation
+{
+    display: none;
+}
 .heading
 {
     
     position: relative;
     height: 30px;
     top: 10px;
-    width: 385px;
+    width: 360px;
     border-top-left-radius: 15px;
     border-radius: 5px;
     left: 1%;
@@ -125,73 +130,14 @@ body
 
 
 
-.expand_content
-{
-    position: absolute;
-    top: 40px;
-    z-index: 150;
-    cursor: pointer;
-    left: 90%;
-    font-size: 20px;
-    color: #fff;
-    transition: 0.5s;
-}
-
-.expand_content.active
-{
-    position: absolute;
-    top: 40px;
-    z-index: 150;
-    cursor: pointer;
-    left: 90%;
-    font-size: 20px;
-    color: #00ff55;
-    transition: 0.5s;
-    transform: rotate(-180deg);
-}
 
 
 
 
 
 
-.edit_message
-{
-    position: absolute;
-    top: 40px;
-    z-index: 150;
-    cursor: pointer;
-    left: 92%;
-    font-size: 20px;
-    color: #fff;
-    transition: 0.5s;
-
-}
-.edit_message.active
-{
-    position: absolute;
-    top: 40px;
-    z-index: 150;
-    cursor: pointer;
-    left: 92%;
-    font-size: 20px;
-    color: #00ff37;
-    transition: 0.5s;
-}
 
 
-.delete_message
-{
-    position: absolute;
-    top: 40px;
-    z-index: 150;
-    cursor: pointer;
-    left: 88%;
-    font-size: 20px;
-    color: #ffffff;
-  
-    transition: 0.5s;
-}
 
 .messsage_timing
 {
@@ -199,7 +145,7 @@ body
     top: 5px;
     z-index: 150;
     pointer-events: none;
-    left: 60%;
+    left: 50%;
     font-size: 10px;
     color: #ffffff;
     transition: 0.5s;
@@ -217,7 +163,7 @@ body
 {
     color: #D1D5DB;
     height: 120px;
-    width: 360px;
+    width: 330px;
     left: 1%;
     position: relative;
     overflow-y: auto;
@@ -233,7 +179,7 @@ body
 {
     color: #D1D5DB;
     height: 450px;
-    width: 360px;
+    width: 330px;
     left: 1%;
     position: relative;
     background-color: transparent;
@@ -252,7 +198,7 @@ body
     height: 150px;
     top: -10px;
     left: 5px;
-    width: 374px;
+    width: 345px;
     margin-top: 12px;
     background-color: #3f3f3fa1;
     backdrop-filter: blur(25px);
@@ -273,7 +219,7 @@ body
     height: 490px;
     top: -10px;
     left: 5px;
-    width: 374px;
+    width: 345px;
     margin-top: 12px;
     background: #1a1a1a5e;
     backdrop-filter: blur(25px);
@@ -364,7 +310,7 @@ body
     top: 40px;
     z-index: 150;
     cursor: pointer;
-    left: 20%;
+    left: 10%;
     font-size: 20px;
     color: #fff;
     transition: 0.5s;
@@ -376,7 +322,7 @@ body
     top: 40px;
     z-index: 150;
     cursor: pointer;
-    left: 20%;
+    left: 10%;
     font-size: 20px;
     color: #00ff37;
     transition: 0.5s;
@@ -427,7 +373,7 @@ body
     top: 40px;
     z-index: 150;
     cursor: pointer;
-    left: 83%;
+    left: 70%;
     font-size: 20px;
     color: #ffffff;
     transition: 0.5s;
@@ -440,7 +386,7 @@ body
     top: 40px;
     z-index: 150;
     cursor: pointer;
-    left: 50%;
+    left: 40%;
     font-size: 20px;
     color: #fff;
     transition: 0.5s;
@@ -452,7 +398,7 @@ body
     top: 40px;
     z-index: 150;
     cursor: pointer;
-    left: 50%;
+    left: 40%;
     font-size: 20px;
     color: #00ff55;
     transition: 0.5s;
@@ -571,7 +517,7 @@ body
     position: absolute;
     top: 5%; /*5*/
     z-index: 10;
-    left: 4%;
+    left: 2.5%;
     width: 95%;
     font-size: 10px;
     text-align: center;
