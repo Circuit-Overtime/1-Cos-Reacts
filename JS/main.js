@@ -16,6 +16,8 @@ const maxDataFetch = 60;
 const extraScroll = 0; //of no use as of now
 document.getElementById("sword_count").innerHTML += " "+maxMessageLength; //SETS THE MAX-MESSAGE-LENGTH TEXT TO DOM
 
+ 
+
 
 const nvbr = document.getElementById("navbar");
 const declre = document.getElementById("declare");
@@ -31,8 +33,6 @@ var firebaseConfig = {
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-textarea.focus();
-
 
 
 //CHECKS IF ANYTHING IS IN DRAFT 
@@ -56,7 +56,7 @@ else
   // INPUT SIZE CHANGE
   //PASTE, CHANGE, KEYDOWN, KEYUP, INPUT TRIGGER COMMANDS
   //SETS VALUE FROM DRAFT IF EXISTS
-  textarea.focus();
+
   ["change","input","paste","keydown","keyup"].forEach(function(evt){
     textarea.addEventListener(evt, function(e) {
 
@@ -303,17 +303,34 @@ if(localStorage.getItem("uid") == undefined)
 
 
 // ==========================================MOB VIEW================================================================================
-      window.onscroll = function() {};        
+          
+       
+      window.matchMedia("(max-width: 600px)").matches == true ? document.getElementById("background_animation").style.display = "none" : null;
       is_message_focused = (document.getElementById("message") === document.activeElement)
       is_search_focused = (document.getElementById("search") === document.activeElement);
-      if(is_message_focused === true) 
+     
+
+      const listener = () => {
+        const MIN_KEYBOARD_HEIGHT = 300 // N.B.! this might not always be correct
+          
+        const isMobile = window.innerWidth < 768
+        const isKeyboardOpen = isMobile 
+          && window.screen.height - MIN_KEYBOARD_HEIGHT > window.visualViewport.height ? nvbr.style.height = "75px" : null
+      }
+      
+      window.visualViewport.addEventListener('resize', listener)
+
+
+      
+      if((is_message_focused === true) && (window.innerHeight <= 407))
       {
         if((window.matchMedia("(max-width: 600px)").matches))
         {
+        
           nvbr.style.height = "75px";
           declre.style.top = "8%";
-          contentHolderDOM.style.height = "300px";
-          document.getElementById("textbox").style.top = "83%";
+          contentHolderDOM.style.height = "250px";
+          document.getElementById("textbox").style.top = "81%";
           document.getElementById("cancel_edit").style.top = "-370px";
           document.getElementById("message_send_loader").style.top = "-375px";
           if(document.getElementById("cancel_edit").classList.contains("active") == false) 
@@ -322,7 +339,42 @@ if(localStorage.getItem("uid") == undefined)
           }
   }
 }
-      if(is_message_focused === false) 
+      if((is_message_focused === false ) || (window.innerHeight > 407))
+      {
+          if(window.matchMedia("(max-width: 600px)").matches == true)
+        {
+          
+        nvbr.style.height = "58px"
+        declre.style.top = "5%";
+        contentHolderDOM.style.height = "510px";
+        document.getElementById("textbox").style.top = "88%";
+        document.getElementById("cancel_edit").style.top = "-585px";
+        document.getElementById("message_send_loader").style.top = "-405px";
+        if(document.getElementById("cancel_edit").classList.contains("active") == false) 
+        {
+          document.getElementById("cancel_edit").style.top = "-685px";
+        }
+       } 
+      }
+
+
+      if((is_search_focused === true)  && (window.innerHeight == 407))
+      {
+        if((window.matchMedia("(max-width: 600px)").matches))
+        {
+          nvbr.style.height = "75px";
+          declre.style.top = "8%";
+          contentHolderDOM.style.height = "250px";
+          document.getElementById("textbox").style.top = "81%";
+          document.getElementById("cancel_edit").style.top = "-370px";
+          document.getElementById("message_send_loader").style.top = "-375px";
+          if(document.getElementById("cancel_edit").classList.contains("active") == false) 
+          {
+          document.getElementById("cancel_edit").style.top = "-685px";
+          }
+  }
+}
+      if(((is_search_focused === false) && (is_message_focused === false)) || (window.innerHeight != 407))
       {
           if(window.matchMedia("(max-width: 600px)").matches == true)
         {
@@ -338,45 +390,11 @@ if(localStorage.getItem("uid") == undefined)
         }
        } 
       }
-
-
-      if(is_search_focused === true) 
-      {
-        if((window.matchMedia("(max-width: 600px)").matches))
-        {
-          nvbr.style.height = "75px";
-          declre.style.top = "8%";
-          contentHolderDOM.style.height = "300px";
-          document.getElementById("textbox").style.top = "83%";
-          document.getElementById("cancel_edit").style.top = "-370px";
-          document.getElementById("message_send_loader").style.top = "-375px";
-          if(document.getElementById("cancel_edit").classList.contains("active") == false) 
-          {
-          document.getElementById("cancel_edit").style.top = "-685px";
-          }
-  }
-}
-      if((is_search_focused === false) && (is_message_focused === false))
-      {
-          if(window.matchMedia("(max-width: 600px)").matches == true)
-        {
-        nvbr.style.height = "58px"
-        declre.style.top = "5%";
-        contentHolderDOM.style.height = "510px";
-        document.getElementById("textbox").style.top = "88%";
-        document.getElementById("cancel_edit").style.top = "-585px";
-        document.getElementById("message_send_loader").style.top = "-405px";
-        if(document.getElementById("cancel_edit").classList.contains("active") == false) 
-        {
-          document.getElementById("cancel_edit").style.top = "-685px";
-        }
-       } 
-      }
-
-
+      document.body.style.overflow = "hidden"; //[WORKING HERE] 
       
       
-      },100)
+      
+      },10)
 
    
 
@@ -709,12 +727,10 @@ else // IF THERE'S THE INTERNET CONNECTION THE BUTTON IS GIVEN A TAG OF DEACTIVA
          if(document.getElementById("content").childElementCount > 0)
          {
            document.getElementById("loader_ripple").style.display = "none";
-          document.getElementById("background_animation").style.display = "block";
          }
          else
          {
            document.getElementById("loader_ripple").style.display = "block";
-           document.getElementById("background_animation").style.display = "none";
           
            DocumentGet();
            setTimeout(() => {
@@ -722,6 +738,16 @@ else // IF THERE'S THE INTERNET CONNECTION THE BUTTON IS GIVEN A TAG OF DEACTIVA
            }, 5000);
           
          }
+
+         if((window.matchMedia("(max-width: 600px)").matches === true) && (document.getElementById("content").childElementCount > 0))
+         {
+          document.getElementById("background_animation").style.display = "none"
+         }
+         else
+         {
+          document.getElementById("background_animation").style.display = "block"
+         }
+
        }, 100);
       
  })
