@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Prompt:wght@300&family=Reenie+Beanie&family=VT323&family=Zeyada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Zeyada&display=swap');
+:root
+{
+    --top_position: 0;
+    --left_position : 0;
+    --rotate_value : 0;
+}
+
 body,html
 {
     margin: 0;
@@ -26,11 +34,23 @@ body,html
     top: 20px;
     cursor: pointer;
     pointer-events:  none;
-    transition: 0.25s;
+    transition:0.25s;
 }
 
 
 
+#rightClickVouch
+{
+    position: absolute;
+    color: #888;
+    top: var(--top_position);
+    left: var(--left_position);
+    font-family: 'Zeyada', cursive;
+    font-size: 18px;
+    transition: .25s;
+    opacity: 0;
+    transform: rotate(var(--rotate_value));
+}
 .textbox
 {
     position: absolute;
